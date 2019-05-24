@@ -24,10 +24,11 @@ class App extends React.Component {
     }
 
     render() {
-        const filteredRobots = this.state.robots.filter(robots => {
-            return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        const { robots, searchfield } = this.state;
+        const filteredRobots = robots.filter(robots => {
+            return robots.name.toLowerCase().includes(searchfield.toLowerCase());
         });
-        if (this.state.robots.length === 0){
+        if (!robots.length) {
             return <h1>Loading</h1>
         } else {
             return (
@@ -35,10 +36,10 @@ class App extends React.Component {
                     <h1 className='f1'>RoboFriends</h1>
                     <SearchBox searchChange={this.onSearchChange} />
                     <Scroll>
-                    <CardList robots={filteredRobots} />
+                        <CardList robots={filteredRobots} />
                     </Scroll>
                 </div>
-    
+
             );
         }
 
